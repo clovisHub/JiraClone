@@ -2,21 +2,23 @@ package com.example.jiraclone.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.example.jiraclone.R
 import kotlinx.android.synthetic.main.view_card.view.*
 
-class CustomCardView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : CardView(context, attrs, defStyleAttr){
+class CustomCardView (context: Context, attrs: AttributeSet):
+    LinearLayout(context, attrs){
 
     init {
-        LayoutInflater.from(context)
-            .inflate(R.layout.view_card, this, true)
-        this.radius = 20F
+        inflate(context, R.layout.view_card, this)
+
+        val cardText : TextView = findViewById(R.id.card_text)
+
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomCardView)
+        cardText.text = attributes.getString(R.styleable.CustomCardView_text)
+        attributes.recycle()
     }
 
     fun setCardText(value : String){

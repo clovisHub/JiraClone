@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.jiraclone.databinding.ActivityHomeBinding
 import com.example.jiraclone.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
