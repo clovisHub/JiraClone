@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/cardview_dark_background"
+<layout xmlns:tools="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:background="#E6E5E5"
         android:layout_height="match_parent">
 
-        <com.example.jiraclone.views.CustomCard
+        <com.example.jiraclone.ui.CustomCardView
             android:id="@+id/teamId"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="40dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
             android:textSize="16sp"
-            app:cardCornerRadius="10dp"
-            app:cardText="@{@string/teams}"
-            app:layout_constraintBottom_toTopOf="@+id/taskId"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:text="Teams"
 
-        <com.example.jiraclone.views.CustomCard
+            />
+
+        <com.example.jiraclone.ui.CustomCardView
             android:id="@+id/taskId"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
             android:textSize="16sp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:text="Task"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardText="@{@string/tasks}"/>
 
-        <com.example.jiraclone.views.CustomCard
+        <com.example.jiraclone.ui.CustomCardView
             android:id="@+id/extraId"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
             android:textSize="16sp"
-            android:elevation="4dp"
-            app:cardCornerRadius="10dp"
-            android:background="@android:color/white"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
+            app:text="Edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskId"
-            app:cardText="@{@string/extra}"/>
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
