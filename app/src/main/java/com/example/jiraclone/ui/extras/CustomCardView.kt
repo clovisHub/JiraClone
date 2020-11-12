@@ -1,4 +1,4 @@
-package com.example.jiraclone.ui
+package com.example.jiraclone.ui.extras
 
 import android.content.Context
 import android.util.AttributeSet

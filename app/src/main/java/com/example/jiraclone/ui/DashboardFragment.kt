@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentDashboardBinding
+import com.example.jiraclone.ui.teams.ListOfTeamsFragment
 
 class DashboardFragment: BaseFragment() {
 

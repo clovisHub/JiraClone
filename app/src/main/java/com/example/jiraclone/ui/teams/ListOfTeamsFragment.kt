@@ -1,4 +1,4 @@
-package com.example.jiraclone.ui
+package com.example.jiraclone.ui.teams
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
+import com.example.jiraclone.ui.BaseFragment
 
 class ListOfTeamsFragment: BaseFragment() {
 

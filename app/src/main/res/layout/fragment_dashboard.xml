@@ -8,7 +8,7 @@
         android:background="#E6E5E5"
         android:layout_height="match_parent">
 
-        <com.example.jiraclone.ui.CustomCardView
+        <com.example.jiraclone.ui.extras.CustomCardView
             android:id="@+id/teamId"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -22,7 +22,7 @@
 
             />
 
-        <com.example.jiraclone.ui.CustomCardView
+        <com.example.jiraclone.ui.extras.CustomCardView
             android:id="@+id/taskId"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -32,13 +32,13 @@
             android:layout_marginStart="16dp"
             android:gravity="center"
             android:textSize="16sp"
-            app:text="Task"
+            app:text="Tasks"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamId" />
 
-        <com.example.jiraclone.ui.CustomCardView
+        <com.example.jiraclone.ui.extras.CustomCardView
             android:id="@+id/extraId"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -48,7 +48,7 @@
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:textSize="16sp"
-            app:text="Edit"
+            app:text="Extra"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
