@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentDashboardBinding
 
+
 class DashboardFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
