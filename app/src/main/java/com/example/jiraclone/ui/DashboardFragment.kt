@@ -9,6 +9,7 @@ import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentDashboardBinding
 import com.example.jiraclone.ui.teams.ListOfTeamsFragment
 
+
 class DashboardFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">JiraClone</string>
     <string name="card_text">Card Text</string>
-
+    <string name="teams">Teams</string>
+    <string name="tasks">Tasks</string>
+    <string name="extra">Extra</string>
 </resources>
