@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
-import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
 import com.example.jiraclone.databinding.FragmentTaskDetailsBinding
 import com.example.jiraclone.ui.BaseFragment
 
