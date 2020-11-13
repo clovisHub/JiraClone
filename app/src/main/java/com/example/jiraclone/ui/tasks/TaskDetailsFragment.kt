@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
+import com.example.jiraclone.databinding.FragmentTaskDetailsBinding
 import com.example.jiraclone.ui.BaseFragment
 
 class TaskDetailsFragment: BaseFragment() {
@@ -14,7 +15,7 @@ class TaskDetailsFragment: BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val taskDetailsBinding = DataBindingUtil
-            .inflate<FragmentListOfTeamsBinding>(inflater, R.layout.fragment_task_details, container, false)
+            .inflate<FragmentTaskDetailsBinding>(inflater, R.layout.fragment_task_details, container, false)
 
         return taskDetailsBinding.root
     }
