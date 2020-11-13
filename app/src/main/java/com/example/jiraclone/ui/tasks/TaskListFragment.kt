@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jiraclone.HomeActivity
 import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
@@ -28,9 +29,9 @@ class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
              viewModel = if(it is HomeActivity) it.activityViewModel else null
          }
 
-        taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(
-             this
-         ).apply {
+        taskListBinding.recyclerTaskListId.layoutManager = LinearLayoutManager(context)
+        taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(this).apply {
+
              viewModel?.getListOfTask()?.observe(this@TaskListFragment, Observer {list ->
                  this.setTaskList(list)
              })
