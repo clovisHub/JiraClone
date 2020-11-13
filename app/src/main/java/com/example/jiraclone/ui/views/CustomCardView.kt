@@ -1,6 +1,7 @@
 package com.example.jiraclone.ui.views
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
@@ -27,3 +28,8 @@ class CustomCardView  @JvmOverloads constructor(
 fun setCardTextBinding(cardView : CustomCardView, textInput: String){
     cardView.binding?.cardText?.text = textInput
 }
+
+//@BindingAdapter("imageInput")
+//fun setCardImageBinding(cardView : CustomCardView, imageInput: Drawable?){
+//    cardView.binding?.
+//}

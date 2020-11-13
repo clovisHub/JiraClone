@@ -9,19 +9,18 @@ import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
 import com.example.jiraclone.ui.BaseFragment
 
-class UserTaskFragment: BaseFragment() {
+class TaskDetailsFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val listOfTeamBinding = DataBindingUtil
-            .inflate<FragmentListOfTeamsBinding>(inflater, R.layout.fragment_list_of_teams, container, false)
+        val taskDetailsBinding = DataBindingUtil
+            .inflate<FragmentListOfTeamsBinding>(inflater, R.layout.fragment_task_details, container, false)
 
-
-        return listOfTeamBinding.root
+        return taskDetailsBinding.root
     }
 
 
     companion object {
-        fun newInstance() = UserTaskFragment()
+        fun newInstance() = TaskDetailsFragment()
     }
 }
