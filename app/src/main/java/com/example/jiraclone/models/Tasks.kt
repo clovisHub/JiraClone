@@ -1,6 +1,6 @@
 package com.example.jiraclone.models
 
-data class Task(val name: String, val content: String, val assigned: Assigned, val status:Status, val team: String)
+data class Task(var name: String ="", var content: String ="", var assigned: Assigned?= null, var status:Status? = null, var team: String ? = null)
 
 data class Assigned(val name: String, val contact: String, val mode: Mode)
 
