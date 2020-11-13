@@ -22,14 +22,14 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/extraId"
+                app:layout_constraintBottom_toTopOf="@+id/taskId"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:textInput="@{@string/teams}" />
 
             <com.example.jiraclone.ui.views.CustomCardView
-                android:id="@+id/extraId"
+                android:id="@+id/taskId"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="16dp"
@@ -44,12 +44,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.44"
-                app:textInput="@{@string/extra}">
+                app:textInput="@{@string/tasks}">
 
             </com.example.jiraclone.ui.views.CustomCardView>
 
             <com.example.jiraclone.ui.views.CustomCardView
-                android:id="@+id/taskId"
+                android:id="@+id/extraId"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="16dp"
@@ -60,8 +60,8 @@
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/extraId"
-                app:textInput="@{@string/tasks}" />
+                app:layout_constraintTop_toBottomOf="@+id/taskId"
+                app:textInput="@{@string/extra}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
