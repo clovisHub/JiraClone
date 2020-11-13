@@ -8,6 +8,8 @@ import com.example.jiraclone.ui.DashboardFragment
 
 class HomeActivity : AppCompatActivity() {
 
+    val activityViewModel : HomeViewModel by lazy { HomeViewModel() }
+
     override fun  onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)

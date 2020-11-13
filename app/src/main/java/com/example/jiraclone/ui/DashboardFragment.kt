@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentDashboardBinding
+import com.example.jiraclone.ui.tasks.TaskListFragment
 
 
 class DashboardFragment: BaseFragment() {
@@ -24,7 +25,7 @@ class DashboardFragment: BaseFragment() {
 
         dashboardBinding.taskId.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.frameId, ListOfTeamsFragment.newInstance())
+                ?.replace(R.id.frameId, TaskListFragment.newInstance())
                 ?.addToBackStack(null)
                 ?.commit()
         }
