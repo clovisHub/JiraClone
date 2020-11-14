@@ -40,6 +40,12 @@ class TaskDetailsFragment: BaseFragment() {
             }
         })
 
+        taskDetailsBinding.taskDetailsCloseId.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.frameId, UpdateTaskFragment.newInstance())
+                ?.addToBackStack(null)
+                ?.commit()
+        }
 
         return taskDetailsBinding.root
     }

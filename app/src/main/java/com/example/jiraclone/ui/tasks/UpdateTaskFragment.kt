@@ -26,7 +26,8 @@ class UpdateTaskFragment: BaseFragment() {
 
         val createTaskBinding = DataBindingUtil
             .inflate<FragmentTaskCreateBinding>(inflater, R.layout.fragment_task_create, container, false)
-        createTaskBinding.taskCreateButtonId.text = "Update"
+        createTaskBinding.taskCreatePageId.text = getString(R.string.update)
+        createTaskBinding.taskCreateButtonId.text = getString(R.string.update)
         createTaskBinding.home = viewModel
 
         viewModel?.observeCurrentTaskEvent()?.observe(viewLifecycleOwner, Observer {
