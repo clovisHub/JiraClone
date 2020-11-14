@@ -16,6 +16,7 @@ class DashboardFragment: BaseFragment() {
          val dashboardBinding = DataBindingUtil
              .inflate<FragmentDashboardBinding>(inflater, R.layout.fragment_dashboard, container, false)
 
+        setToolbarText("Dashboard", false)
         dashboardBinding.teamId.setOnClickListener {
              activity?.supportFragmentManager?.beginTransaction()
                  ?.replace(R.id.frameId, ListOfTeamsFragment.newInstance())

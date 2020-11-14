@@ -19,6 +19,10 @@ class HomeViewModel: ViewModel() {
 
     fun getListOfTask() : LiveData<List<Task>> = liveTaskList
 
+    fun setCurrentTask(task: Task) {
+        liveTaskEvent.value = Event(task)
+    }
+
     fun createTask() {
        liveTaskEvent.value = Event(Task())
     }

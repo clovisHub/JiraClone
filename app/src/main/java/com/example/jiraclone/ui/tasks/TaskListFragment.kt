@@ -24,9 +24,14 @@ class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
             .inflate<FragmentTasksListBinding>(inflater, R.layout.fragment_tasks_list, container, false)
 
          activity?.let {
+             context?.resources?.getString(R.string.list_of_tasks)?.let {title ->
+                 setToolbarText(title)
+             }
+
              viewModel = if(it is HomeActivity) it.activityViewModel else null
          }
-
+        setBackArrowClick()
+        setCloseClick()
         taskListBinding.recyclerTaskListId.layoutManager = LinearLayoutManager(context)
         taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(this).apply {
 
@@ -52,6 +57,8 @@ class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
 
     override fun onClick(task: Task) {
        //clicked or selected task from the list of Tasks
+        viewModel?.setCurrentTask(task)
+        Thread.sleep(100L)
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.frameId, TaskDetailsFragment.newInstance())
             ?.addToBackStack(null)
