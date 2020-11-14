@@ -29,6 +29,11 @@ fun setCardTextBinding(cardView : CustomCardView, textInput: String){
     cardView.binding?.cardText?.text = textInput
 }
 
+@BindingAdapter("textSize")
+fun setCardTextSizeBinding(cardView : CustomCardView, textInput: Int){
+    cardView.binding?.cardText?.textSize = textInput.toFloat()
+}
+
 //@BindingAdapter("imageInput")
 //fun setCardImageBinding(cardView : CustomCardView, imageInput: Drawable?){
 //    cardView.binding?.

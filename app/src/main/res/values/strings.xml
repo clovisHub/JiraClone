@@ -8,4 +8,6 @@
     <string name="content">Content</string>
     <string name="create_task">Create Task</string>
     <string name="task_title">Task Title</string>
+    <string name="description">Description</string>
+    <string name="bullet_title">Bullet title</string>
 </resources>

@@ -13,8 +13,6 @@ import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentTasksListBinding
 import com.example.jiraclone.models.Task
 import com.example.jiraclone.ui.BaseFragment
-import com.example.jiraclone.ui.DashboardFragment
-import com.example.jiraclone.ui.UserTaskFragment
 
 class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
 
@@ -32,7 +30,7 @@ class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
         taskListBinding.recyclerTaskListId.layoutManager = LinearLayoutManager(context)
         taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(this).apply {
 
-             viewModel?.getListOfTask()?.observe(this@TaskListFragment, Observer {list ->
+             viewModel?.getListOfTask()?.observe(viewLifecycleOwner, Observer {list ->
                  this.setTaskList(list)
              })
          }
