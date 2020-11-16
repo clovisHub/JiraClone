@@ -31,7 +31,7 @@ class TaskDetailsFragment: BaseFragment() {
 
         viewModel?.observeCurrentTaskEvent()?.observe(viewLifecycleOwner, Observer {
             it?.let {event ->
-                 event.getContentIfNotHandled<Task>()?.let {task ->
+                 event.getContent()?.let {task ->
                      taskDetailsBinding.taskDetailsTitleId.text = task.name
                      taskDetailsBinding.taskDetailsAssignedId.text = task.assigned?.name?: ""
                      taskDetailsBinding.taskDetailsDescriptionId.text = task.content
@@ -41,6 +41,10 @@ class TaskDetailsFragment: BaseFragment() {
         })
 
         taskDetailsBinding.taskDetailsCloseId.setOnClickListener {
+            viewModel?.observeCurrentTaskEvent()?.value?.let {event ->
+                viewModel?.setCurrentTask(event.getContent())
+            }
+            Thread.sleep(100L)
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.frameId, UpdateTaskFragment.newInstance())
                 ?.addToBackStack(null)
