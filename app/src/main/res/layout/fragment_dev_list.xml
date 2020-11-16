@@ -7,15 +7,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/dev_list_title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:textSize="22sp"
+            android:text="@string/list_of_Developers"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDevListId"
             android:layout_width="403dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@id/addDevId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addDevId" />
+            app:layout_constraintTop_toBottomOf="@id/dev_list_title_id" />
 
         <Button
             android:id="@+id/addDevId"
@@ -23,10 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:text="+"
-            android:textSize="36sp"
+            android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

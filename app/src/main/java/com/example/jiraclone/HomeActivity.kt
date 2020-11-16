@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.databinding.ActivityHomeBinding
 import com.example.jiraclone.ui.DashboardFragment
+import com.example.jiraclone.viewmodels.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
 

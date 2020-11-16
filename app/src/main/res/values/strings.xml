@@ -8,4 +8,9 @@
     <string name="content">Content</string>
     <string name="create_task">Create Task</string>
     <string name="task_title">Task Title</string>
+    <string name="list_of_Developers">List Of Developers</string>
+    <string name="list_of_Teams">List of Teams</string>
+    <string name="create_team">Create New Team</string>
+    <string name="team_name_hint">Team Name</string>
+    <string name="create_new_team">Create Team</string>
 </resources>
