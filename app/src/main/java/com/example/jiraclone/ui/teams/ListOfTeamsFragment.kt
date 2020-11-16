@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jiraclone.HomeActivity
+import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
 import com.example.jiraclone.models.Task
 import com.example.jiraclone.models.Teams
 import com.example.jiraclone.ui.BaseFragment
 import com.example.jiraclone.ui.tasks.TaskDetailsFragment
-import com.example.jiraclone.viewmodels.HomeViewModel
 
 class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
 
@@ -27,8 +28,14 @@ class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
             .inflate<FragmentListOfTeamsBinding>(inflater, R.layout.fragment_list_of_teams, container, false)
 
             activity?.let {
+                context?.resources?.getString(R.string.list_of_Teams)?.let {title ->
+                    setToolbarText(title)
+                }
                 viewModel = if(it is HomeActivity) it.activityViewModel else null
             }
+        setBackArrowClick()
+        setCloseClick()
+        listOfTeamBinding.recyclerTeamsId.layoutManager = LinearLayoutManager(context)
         listOfTeamBinding.recyclerTeamsId.adapter = TeamListAdapter(this)
             .apply {
                 viewModel?.getTeamsList()?.observe(this@ListOfTeamsFragment, Observer { list ->
@@ -52,8 +59,10 @@ class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
 
     override fun onClick(teams: Teams) {
         //clicked or selected team from the list of Teams
+        viewModel?.setCurrenntTeam(teams)
+        Thread.sleep(100L)
         activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.frameId, ListOfDevsFragment.newInstance())
+            ?.replace(R.id.frameId, TeamMembersFragment.newInstance())
             ?.addToBackStack(null)
             ?.commit()
     }

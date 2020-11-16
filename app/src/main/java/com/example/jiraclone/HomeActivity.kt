@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.jiraclone.databinding.ActivityHomeBinding
 import com.example.jiraclone.ui.DashboardFragment
-import com.example.jiraclone.viewmodels.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
 
@@ -16,6 +15,13 @@ class HomeActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
             supportFragmentManager.beginTransaction()
                 .add(binding.frameId.id, DashboardFragment.newInstance())
+               // .addToBackStack(null)
                 .commit()
+    }
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.fragments.count() == 0) {
+            finish()
+        } else super.onBackPressed()
     }
 }

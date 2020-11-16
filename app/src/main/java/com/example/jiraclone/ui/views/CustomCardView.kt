@@ -36,3 +36,13 @@ fun setCardImageBinding(cardView : CustomCardView, imageInput: Drawable?){
     cardView.binding?.cardImage?.visibility = if (imageInput == null) View.GONE else View.VISIBLE
     cardView.binding?.cardImage?.setImageDrawable(imageInput)
 }
+
+@BindingAdapter("textSize")
+fun setCardTextSizeBinding(cardView : CustomCardView, textInput: Int){
+    cardView.binding?.cardText?.textSize = textInput.toFloat()
+}
+
+//@BindingAdapter("imageInput")
+//fun setCardImageBinding(cardView : CustomCardView, imageInput: Drawable?){
+//    cardView.binding?.
+//}

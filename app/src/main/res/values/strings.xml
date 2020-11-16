@@ -5,12 +5,19 @@
     <string name="tasks">Tasks</string>
     <string name="extra">Extra</string>
     <string name="list_of_tasks">List Of Tasks</string>
+    <string name="task_details">Task Details</string>
     <string name="content">Content</string>
     <string name="create_task">Create Task</string>
     <string name="task_title">Task Title</string>
+    <string name="description">Description</string>
+    <string name="bullet_title">Bullet title</string>
+    <string name="add_task">Add Task</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="update">Update</string>
     <string name="list_of_Developers">List Of Developers</string>
     <string name="list_of_Teams">List of Teams</string>
     <string name="create_team">Create New Team</string>
     <string name="team_name_hint">Team Name</string>
     <string name="create_new_team">Create Team</string>
+    <string name="add_new_team">New Team</string>
 </resources>

@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jiraclone.HomeActivity
+import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentTasksListBinding
 import com.example.jiraclone.models.Task
 import com.example.jiraclone.ui.BaseFragment
-import com.example.jiraclone.viewmodels.HomeViewModel
 
-
-class TaskListFragment : BaseFragment(), TaskListAdapter.TaskListListener {
+class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
 
     private var viewModel: HomeViewModel? = null
 
@@ -32,17 +32,22 @@ class TaskListFragment : BaseFragment(), TaskListAdapter.TaskListListener {
                 false
             )
 
-        activity?.let {
-            viewModel = if (it is HomeActivity) it.activityViewModel else null
-        }
+         activity?.let {
+             context?.resources?.getString(R.string.list_of_tasks)?.let {title ->
+                 setToolbarText(title)
+             }
 
-        taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(
-            this
-        ).apply {
-            viewModel?.getListOfTask()?.observe(this@TaskListFragment, Observer { list ->
-                this.setTaskList(list)
-            })
-        }
+             viewModel = if(it is HomeActivity) it.activityViewModel else null
+         }
+        setBackArrowClick()
+        setCloseClick()
+        taskListBinding.recyclerTaskListId.layoutManager = LinearLayoutManager(context)
+        taskListBinding.recyclerTaskListId.adapter = TaskListAdapter(this).apply {
+
+             viewModel?.getListOfTask()?.observe(viewLifecycleOwner, Observer {list ->
+                 this.setTaskList(list)
+             })
+         }
 
         //to create a new task
         taskListBinding.addTaskButtonId.setOnClickListener {
@@ -60,7 +65,9 @@ class TaskListFragment : BaseFragment(), TaskListAdapter.TaskListListener {
     }
 
     override fun onClick(task: Task) {
-        //clicked or selected task from the list of Tasks
+       //clicked or selected task from the list of Tasks
+        viewModel?.setCurrentTask(task)
+        Thread.sleep(100L)
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.frameId, TaskDetailsFragment.newInstance())
             ?.addToBackStack(null)
