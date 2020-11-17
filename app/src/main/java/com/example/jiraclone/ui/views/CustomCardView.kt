@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
@@ -26,7 +27,14 @@ class CustomCardView  @JvmOverloads constructor(
 
 @BindingAdapter("textInput")
 fun setCardTextBinding(cardView : CustomCardView, textInput: String){
+    cardView.binding?.cardText?.visibility = if (textInput.isEmpty()) View.GONE else View.VISIBLE
     cardView.binding?.cardText?.text = textInput
+}
+
+@BindingAdapter("imageInput")
+fun setCardImageBinding(cardView : CustomCardView, imageInput: Drawable?){
+    cardView.binding?.cardImage?.visibility = if (imageInput == null) View.GONE else View.VISIBLE
+    cardView.binding?.cardImage?.setImageDrawable(imageInput)
 }
 
 @BindingAdapter("textSize")

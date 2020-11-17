@@ -18,10 +18,19 @@ class TaskListFragment: BaseFragment(), TaskListAdapter.TaskListListener {
 
     private var viewModel: HomeViewModel? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val taskListBinding = DataBindingUtil
-            .inflate<FragmentTasksListBinding>(inflater, R.layout.fragment_tasks_list, container, false)
+            .inflate<FragmentTasksListBinding>(
+                inflater,
+                R.layout.fragment_tasks_list,
+                container,
+                false
+            )
 
          activity?.let {
              context?.resources?.getString(R.string.list_of_tasks)?.let {title ->

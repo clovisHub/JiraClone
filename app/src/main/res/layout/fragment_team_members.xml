@@ -8,24 +8,26 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/developersListId"
+            android:id="@+id/recyclerDevListId"
             android:layout_width="403dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@id/addDevId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addDeveloperId" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/addDeveloperId"
+            android:id="@+id/addDevId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:text="+"
-            android:textSize="36sp"
+            android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

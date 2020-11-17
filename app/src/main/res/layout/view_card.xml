@@ -4,8 +4,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center">
+
+        <ImageView
+            android:id="@+id/card_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:src="@android:drawable/btn_plus"
+            android:contentDescription="Image"
+            tools:visibility="visible"
+            android:visibility="gone"
+            />
+
 
         <TextView
             android:id="@+id/card_text"
@@ -13,6 +25,8 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/caption_text_size"
             tools:text="Teams"
+            tools:visibility="visible"
+            android:visibility="gone"
             android:textColor="@color/black_text"
             android:gravity="center"
             />
