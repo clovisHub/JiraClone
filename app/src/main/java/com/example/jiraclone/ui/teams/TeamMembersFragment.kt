@@ -10,16 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jiraclone.HomeActivity
 import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
-import com.example.jiraclone.databinding.FragmentDevListBinding
 import com.example.jiraclone.databinding.FragmentTeamMembersBinding
+import com.example.jiraclone.models.TeamMember
 import com.example.jiraclone.ui.BaseFragment
-import com.example.jiraclone.ui.DashboardFragment
 
-class TeamMembersFragment: BaseFragment() {
+class TeamMembersFragment: BaseFragment(), TeamMembersAdapter.TeamMemberListener {
 
     private var viewModel : HomeViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val teamMembersBinding = DataBindingUtil
             .inflate<FragmentTeamMembersBinding>(inflater, R.layout.fragment_team_members, container, false)
 
@@ -29,18 +29,34 @@ class TeamMembersFragment: BaseFragment() {
             }
             viewModel = if(it is HomeActivity) it. activityViewModel else null
         }
-
-        viewModel?.observeCurrentTeamEvent()?.observe(viewLifecycleOwner, Observer {
-            it?.let { event ->
-                event.getContent()?.let{teams ->
-                    teamMembersBinding.recyclerDevListId.layoutManager = LinearLayoutManager(context)
-                }
-            }
-        })
+        setBackArrowClick()
+        setCloseClick()
+        teamMembersBinding.recyclerTeamMembersListId.layoutManager = LinearLayoutManager(context)
+        teamMembersBinding.recyclerTeamMembersListId.adapter = TeamMembersAdapter(this).apply {
+            viewModel?.getTeamMemberList()?.observe(this@TeamMembersFragment, Observer { list ->
+                this.setTeamMemberList(list)
+            })
+        }
+        teamMembersBinding.addDevId.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.frameId,AddNewMemberFragment.newInstance())
+                ?.addToBackStack(null)
+                ?.commit()
+        }
         return teamMembersBinding.root
     }
 
     companion object {
         fun newInstance() = TeamMembersFragment()
+    }
+
+    override fun onClick(teamMember: TeamMember) {
+
+        viewModel?.setCurrentTeamMember(teamMember)
+        Thread.sleep(100L)
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.frameId, WorkBasketFragment.newInstance())
+            ?.addToBackStack(null)
+            ?.commit()
     }
 }

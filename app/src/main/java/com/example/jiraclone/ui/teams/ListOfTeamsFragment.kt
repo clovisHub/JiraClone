@@ -11,10 +11,8 @@ import com.example.jiraclone.HomeActivity
 import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentListOfTeamsBinding
-import com.example.jiraclone.models.Task
-import com.example.jiraclone.models.Teams
+import com.example.jiraclone.models.Team
 import com.example.jiraclone.ui.BaseFragment
-import com.example.jiraclone.ui.tasks.TaskDetailsFragment
 
 class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
 
@@ -57,7 +55,7 @@ class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
         fun newInstance() = ListOfTeamsFragment()
     }
 
-    override fun onClick(teams: Teams) {
+    override fun onClick(teams: Team) {
         //clicked or selected team from the list of Teams
         viewModel?.setCurrenntTeam(teams)
         Thread.sleep(100L)
