@@ -3,9 +3,12 @@ package com.example.jiraclone.repo
 import com.example.jiraclone.models.*
 
 object Repository {
-    var listOfTask : MutableList<Task> = mutableListOf()
+
     var teamsList : MutableList<Team> = mutableListOf()
-    var teamMemberList : MutableList<TeamMember> = mutableListOf()
+    private var listOfTask : MutableList<Task> = mutableListOf()
+    private var teamMemberListInDolphin : MutableList<TeamMember> = mutableListOf()
+    private var teamMemberListinPeguin : MutableList<TeamMember> = mutableListOf()
+    private var teamMembersInKayote : MutableList<TeamMember> = mutableListOf()
     //Task(val name: String, val content: String, val assigned: Assigned, val status:Status, val team: String)
     //data class Assigned(val name: String, val contact: String, val mode: Mode)
 
@@ -19,23 +22,42 @@ object Repository {
         listOfTask.add(Task("Car dealers", "Get A deal on Cars",Assigned("Soso", "1234", Mode("Negotiation")), Status("Not Started"), "First"))
         listOfTask.add(Task("Coach Team", "Talk to football players",Assigned("Little Lea", "1234", Mode("Meetings")), Status("Not Started"), "First"))
 
-        teamsList.add(Team("0", "Dolphin"))
-        teamsList.add(Team("1", "kayote"))
-        teamsList.add(Team("2", "penguin"))
-        teamsList.add(Team("3", "panda"))
-        teamsList.add(Team("4", "panther"))
-        teamsList.add(Team("5", "wolf"))
-        teamsList.add(Team("6", "gazel"))
-        teamsList.add(Team("7", "ram"))
-        teamsList.add(Team("8", "mouse"))
-        teamsList.add(Team("9", "fox"))
 
-        teamMemberList.add(TeamMember("Liam","Ethan",true))
-        teamMemberList.add(TeamMember("Soso","Milton",true))
-        teamMemberList.add(TeamMember("Clova","Inak",false))
-        teamMemberList.add(TeamMember("Marie","Inaka",true))
-        teamMemberList.add(TeamMember("Mira","Abonge",true))
-        teamMemberList.add(TeamMember("Milton","Ak",true))
+
+//        teamsList.add(Team("3", "panda"))
+//        teamsList.add(Team("4", "panther"))
+//        teamsList.add(Team("5", "wolf"))
+//        teamsList.add(Team("6", "gazel"))
+//        teamsList.add(Team("7", "ram"))
+//        teamsList.add(Team("8", "mouse"))
+//        teamsList.add(Team("9", "fox"))
+
+        teamMemberListInDolphin.add(TeamMember("Liam","Ethan", teamName = "Dolphin", teamLead = true, listOfTask = listOfTask))
+        teamMemberListInDolphin.add(TeamMember("Soso","Milton", teamLead = false, teamName = "Dolphin", listOfTask = listOfTask))
+        teamMemberListInDolphin.add(TeamMember("Clova","Inak","Dolphin", listOfTask = listOfTask))
+        teamMemberListInDolphin.add(TeamMember("Marie","Inaka","Dolphin", listOfTask = listOfTask))
+        teamMemberListInDolphin.add(TeamMember("Mira","Abonge","Dolphin"))
+        teamMemberListInDolphin.add(TeamMember("Milton","Ak","Dolphin"))
+
+        teamMembersInKayote.add(TeamMember("Liam","Ethan", teamName = "kayote", teamLead = true))
+        teamMembersInKayote.add(TeamMember("Mol","Milton", teamName = "kayote"))
+        teamMembersInKayote.add(TeamMember("Clovadrg","Inak","kayote", listOfTask = listOfTask))
+        teamMembersInKayote.add(TeamMember("MarieTou","Inaka","kayote", listOfTask = listOfTask))
+        teamMembersInKayote.add(TeamMember("Miranak","Abonge","kayote", listOfTask = listOfTask))
+        teamMembersInKayote.add(TeamMember("Miltondfj","Ak","kayote"))
+
+        teamMemberListinPeguin.add(TeamMember("LiamJolei","Ethan", teamName = "penguin", teamLead = true, listOfTask = listOfTask))
+        teamMemberListinPeguin.add(TeamMember("SosoDrrtt","Milton", teamLead = false, teamName = "penguin"))
+        teamMemberListinPeguin.add(TeamMember("Clovaiiiii","Inak","penguin", listOfTask = listOfTask))
+        teamMemberListinPeguin.add(TeamMember("Mariejjjjj","Inaka","penguin",false, listOfTask = listOfTask))
+        teamMemberListinPeguin.add(TeamMember("Mirajjjjj","Abonge","penguin",false))
+        teamMemberListinPeguin.add(TeamMember("Miltonjjjj","Ak","penguin",false))
+
+        teamsList.add(Team("0", "Dolphin",  teamMemberListInDolphin))
+        teamsList.add(Team("1", "kayote", teamMembersInKayote))
+        teamsList.add(Team("2", "penguin", teamMemberListinPeguin))
     }
+
+
 
 }
