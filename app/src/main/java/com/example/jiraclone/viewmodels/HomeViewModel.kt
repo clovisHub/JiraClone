@@ -19,10 +19,10 @@ class HomeViewModel: ViewModel() {
     private val liveTeamMemberEvent : MutableLiveData<Event<TeamMember>> = MutableLiveData()
 
     init {
-        liveTaskList.value = Repository.listOfTask
-        Log.d("numbers", Repository.listOfTask.size.toString())
+        //liveTaskList.value = Repository
+       // Log.d("numbers", Repository.listOfTask.size.toString())
         liveTeamsList.value = Repository.teamsList
-        liveTeamsMemberList.value = Repository.teamMemberList
+        //liveTeamsMemberList.value = Repository.teamMemberList
     }
 
     fun getListOfTask() : LiveData<List<Task>> = liveTaskList
@@ -58,17 +58,17 @@ class HomeViewModel: ViewModel() {
     fun observeCurrentTeamMemberEvent() : LiveData<Event<TeamMember>> = liveTeamMemberEvent
 
     fun addTask(task: Task) {
-        Repository.listOfTask.add(task)
-        Log.d("numbers", Repository.listOfTask.size.toString())
+        //Repository.listOfTask.add(task)
+        //Log.d("numbers", Repository.listOfTask.size.toString())
     }
 
-    fun addNewTeam(teams: Team) {
-        Repository.teamsList.add(teams)
-        Log.d("numbers", Repository.teamsList.size.toString())
-    }
-
-    fun addNewTeamMember(teamMember: TeamMember) {
-        Repository.teamMemberList.add(teamMember)
-        Log.d("numbers", Repository.teamMemberList.size.toString())
-    }
+//    fun addNewTeam(teams: Team) {
+//        Repository.teamsList.add(teams)
+//        Log.d("numbers", Repository.teamsList.size.toString())
+//    }
+//
+//    fun addNewTeamMember(teamMember: TeamMember) {
+//        Repository.teamMemberList.add(teamMember)
+//        Log.d("numbers", Repository.teamMemberList.size.toString())
+//    }
 }
