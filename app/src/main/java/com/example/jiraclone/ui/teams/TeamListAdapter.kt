@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jiraclone.databinding.TeamItemBinding
-import com.example.jiraclone.models.Teams
+import com.example.jiraclone.models.Team
 
 class TeamListAdapter (private var teamsListener: TeamsListListener): RecyclerView.Adapter<TeamListAdapter.TeamsHolder>() {
 
-    private var teamList: MutableList<Teams> = mutableListOf()
+    private var teamList: MutableList<Team> = mutableListOf()
 
-    fun setTeamList(teams: List<Teams>) {
+    fun setTeamList(teams: List<Team>) {
         teamList.clear()
         teamList.addAll(teams)
         notifyDataSetChanged()
@@ -37,7 +37,7 @@ class TeamListAdapter (private var teamsListener: TeamsListListener): RecyclerVi
     class TeamsHolder(val view: TeamItemBinding) : RecyclerView.ViewHolder(view.root)
 
     interface TeamsListListener {
-        fun  onClick(teams: Teams)
+        fun  onClick(teams: Team)
     }
 
 }

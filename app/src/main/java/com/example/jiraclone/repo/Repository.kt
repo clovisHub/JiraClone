@@ -4,21 +4,10 @@ import com.example.jiraclone.models.*
 
 object Repository {
     var listOfTask : MutableList<Task> = mutableListOf()
-    var teamsList : MutableList<Teams> = mutableListOf()
+    var teamsList : MutableList<Team> = mutableListOf()
+    var teamMemberList : MutableList<TeamMember> = mutableListOf()
     //Task(val name: String, val content: String, val assigned: Assigned, val status:Status, val team: String)
     //data class Assigned(val name: String, val contact: String, val mode: Mode)
-    init {
-            teamsList.add(Teams(0, "Dolphin"))
-            teamsList.add(Teams(1, "kayote"))
-            teamsList.add(Teams(2, "penguin"))
-            teamsList.add(Teams(3, "panda"))
-            teamsList.add(Teams(4, "panther"))
-            teamsList.add(Teams(5, "wolf"))
-            teamsList.add(Teams(6, "gazel"))
-            teamsList.add(Teams(7, "ram"))
-            teamsList.add(Teams(8, "mouse"))
-            teamsList.add(Teams(9, "fox"))
-    }
 
     init {
         listOfTask.add(Task("Create Login", "Login should contains two buttons",Assigned("clovis", "1234", Mode("OffShore")), Status("Not Started"), "First"))
@@ -29,6 +18,24 @@ object Repository {
         listOfTask.add(Task("Amazon", "Do shopping",Assigned("Marie", "1234", Mode("Buying")), Status("Not Started"), "First"))
         listOfTask.add(Task("Car dealers", "Get A deal on Cars",Assigned("Soso", "1234", Mode("Negotiation")), Status("Not Started"), "First"))
         listOfTask.add(Task("Coach Team", "Talk to football players",Assigned("Little Lea", "1234", Mode("Meetings")), Status("Not Started"), "First"))
+
+        teamsList.add(Team("0", "Dolphin"))
+        teamsList.add(Team("1", "kayote"))
+        teamsList.add(Team("2", "penguin"))
+        teamsList.add(Team("3", "panda"))
+        teamsList.add(Team("4", "panther"))
+        teamsList.add(Team("5", "wolf"))
+        teamsList.add(Team("6", "gazel"))
+        teamsList.add(Team("7", "ram"))
+        teamsList.add(Team("8", "mouse"))
+        teamsList.add(Team("9", "fox"))
+
+        teamMemberList.add(TeamMember("Liam","Ethan",true))
+        teamMemberList.add(TeamMember("Soso","Milton",true))
+        teamMemberList.add(TeamMember("Clova","Inak",false))
+        teamMemberList.add(TeamMember("Marie","Inaka",true))
+        teamMemberList.add(TeamMember("Mira","Abonge",true))
+        teamMemberList.add(TeamMember("Milton","Ak",true))
     }
 
 }

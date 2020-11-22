@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@id/create_new_team_page_id" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerDevListId"
+            android:id="@+id/recyclerTeamMembersListId"
             android:layout_width="403dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"

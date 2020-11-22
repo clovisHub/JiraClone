@@ -5,31 +5,40 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.jiraclone.models.Task
-import com.example.jiraclone.models.Teams
+import com.example.jiraclone.models.Team
+import com.example.jiraclone.models.TeamMember
 import com.example.jiraclone.repo.Repository
 
 class HomeViewModel: ViewModel() {
 
     private val liveTaskList: MutableLiveData<List<Task>> = MutableLiveData()
-    private val liveTeamsList: MutableLiveData<List<Teams>> = MutableLiveData()
+    private val liveTeamsList: MutableLiveData<List<Team>> = MutableLiveData()
+    private val liveTeamsMemberList: MutableLiveData<List<TeamMember>> = MutableLiveData()
     private val liveTaskEvent : MutableLiveData<Event<Task>> = MutableLiveData()
-    private val liveTeamEvent : MutableLiveData<Event<Teams>> = MutableLiveData()
+    private val liveTeamEvent : MutableLiveData<Event<Team>> = MutableLiveData()
+    private val liveTeamMemberEvent : MutableLiveData<Event<TeamMember>> = MutableLiveData()
 
     init {
         liveTaskList.value = Repository.listOfTask
         Log.d("numbers", Repository.listOfTask.size.toString())
         liveTeamsList.value = Repository.teamsList
+        liveTeamsMemberList.value = Repository.teamMemberList
     }
 
     fun getListOfTask() : LiveData<List<Task>> = liveTaskList
-    fun getTeamsList() : LiveData<List<Teams>> = liveTeamsList
+    fun getTeamsList() : LiveData<List<Team>> = liveTeamsList
+    fun getTeamMemberList() : LiveData<List<TeamMember>> = liveTeamsMemberList
 
     fun setCurrentTask(task: Task) {
         liveTaskEvent.value = Event(task)
     }
 
-    fun setCurrenntTeam(teams: Teams){
+    fun setCurrenntTeam(teams: Team){
         liveTeamEvent.value = Event(teams)
+    }
+
+    fun setCurrentTeamMember(teamMember: TeamMember){
+        liveTeamMemberEvent.value = Event(teamMember)
     }
 
     fun createTask() {
@@ -37,19 +46,29 @@ class HomeViewModel: ViewModel() {
     }
 
     fun createTeam(){
-        liveTeamEvent.value = Event(Teams(0, ""))
+        liveTeamEvent.value = Event(Team("", ""))
+    }
+
+    fun createTeamMember(){
+        liveTeamMemberEvent.value = Event(TeamMember("", ""))
     }
 
     fun observeCurrentTaskEvent() : LiveData<Event<Task>> = liveTaskEvent
-    fun observeCurrentTeamEvent() : LiveData<Event<Teams>> = liveTeamEvent
+    fun observeCurrentTeamEvent() : LiveData<Event<Team>> = liveTeamEvent
+    fun observeCurrentTeamMemberEvent() : LiveData<Event<TeamMember>> = liveTeamMemberEvent
 
     fun addTask(task: Task) {
         Repository.listOfTask.add(task)
         Log.d("numbers", Repository.listOfTask.size.toString())
     }
 
-    fun addNewTeam(teams: Teams) {
+    fun addNewTeam(teams: Team) {
         Repository.teamsList.add(teams)
         Log.d("numbers", Repository.teamsList.size.toString())
+    }
+
+    fun addNewTeamMember(teamMember: TeamMember) {
+        Repository.teamMemberList.add(teamMember)
+        Log.d("numbers", Repository.teamMemberList.size.toString())
     }
 }
