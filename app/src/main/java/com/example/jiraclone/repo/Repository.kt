@@ -13,14 +13,14 @@ object Repository {
     //data class Assigned(val name: String, val contact: String, val mode: Mode)
 
     init {
-        listOfTask.add(Task("Create Login", "Login should contains two buttons",Assigned("clovis", "1234", Mode("OffShore")), Status("Not Started"), "First"))
-        listOfTask.add(Task("Create Work", "Work on Teams",Assigned("Milton", "1234", Mode("In Office")), Status("Started"), "First"))
-        listOfTask.add(Task("Visit Honolulu", "Go To honolulu",Assigned("John", "1234", Mode("Vacation")), Status("Not Started"), "second"))
-        listOfTask.add(Task("Fly Abroad", "Fly by plane",Assigned("Maurice", "1234", Mode("Travelling")), Status("Not Started"), "First"))
-        listOfTask.add(Task("Build", "Build a house",Assigned("Allen", "1234", Mode("Construction")), Status("Not Started"), "Third"))
-        listOfTask.add(Task("Amazon", "Do shopping",Assigned("Marie", "1234", Mode("Buying")), Status("Not Started"), "First"))
-        listOfTask.add(Task("Car dealers", "Get A deal on Cars",Assigned("Soso", "1234", Mode("Negotiation")), Status("Not Started"), "First"))
-        listOfTask.add(Task("Coach Team", "Talk to football players",Assigned("Little Lea", "1234", Mode("Meetings")), Status("Not Started"), "First"))
+        listOfTask.add(Task("Create Login", "Login should contains two buttons",Assigned("clovis", "1234", Mode("OffShore")), Status("Not Started"), "First", 0))
+        listOfTask.add(Task("Create Work", "Work on Teams",Assigned("Milton", "1234", Mode("In Office")), Status("Started"), "First", 1))
+        listOfTask.add(Task("Visit Honolulu", "Go To honolulu",Assigned("John", "1234", Mode("Vacation")), Status("Not Started"), "second", 2))
+        listOfTask.add(Task("Fly Abroad", "Fly by plane",Assigned("Maurice", "1234", Mode("Travelling")), Status("Not Started"), "First", 3))
+        listOfTask.add(Task("Build", "Build a house",Assigned("Allen", "1234", Mode("Construction")), Status("Not Started"), "Third", 4))
+        listOfTask.add(Task("Amazon", "Do shopping",Assigned("Marie", "1234", Mode("Buying")), Status("Not Started"), "First", 5))
+        listOfTask.add(Task("Car dealers", "Get A deal on Cars",Assigned("Soso", "1234", Mode("Negotiation")), Status("Not Started"), "First", 6))
+        listOfTask.add(Task("Coach Team", "Talk to football players",Assigned("Little Lea", "1234", Mode("Meetings")), Status("Not Started"), "First", 7))
 
 
 
@@ -58,6 +58,103 @@ object Repository {
         teamsList.add(Team("2", "penguin", teamMemberListinPeguin))
     }
 
+    /**
+     * Tasks
+     */
+    fun addTaskToLisOfTasks(task: Task):Boolean {
+         listOfTask.forEach {
+             if(it.name.contains(task.name, true)) {
+                 return false
+             }
+         }
 
+         listOfTask.add(task)
 
+         return true
+     }
+
+    fun updateTask(task: Task): Boolean {
+        listOfTask.forEach {
+            if(it.taskId == task.taskId) {
+                listOfTask.remove(it)
+                listOfTask.add(task)
+                return true
+            }
+        }
+
+        return false
+    }
+
+    fun deleteTask(task: Task) {
+        listOfTask.remove(task)
+    }
+
+    fun getLastAvailableTaskId() : Int {
+        return listOfTask.size
+    }
+
+    /**
+     * Team members
+     */
+    fun addTeamMember(member: TeamMember): Boolean {
+       teamsList.forEach {
+           if(it.name.equals(member.teamName)) {
+               it.listOfMembers?.forEach { mate->
+                   if(mate.teamName.equals(member.teamName)) {
+                       //no need to add this member if  he is already in the team.
+                       return false
+                   }
+               }
+               //we add him if the team exist and he is really supposed to be member of that team.
+               if (it.listOfMembers != null) {
+                   it.listOfMembers?.add(member)
+               }else {
+                   it.listOfMembers = mutableListOf()
+                   it.listOfMembers?.add(member)
+               }
+               return true
+           }
+       }
+        //if the team doesn't exist we can't add him because he needs to be member of an existing team.
+        return false
+    }
+
+    fun removeMemberInATeam(member: TeamMember): Boolean {
+        teamsList.forEach {
+            if (it.name.equals(member.teamName)) {
+                it.listOfMembers?.forEach { mate ->
+                    if (mate.teamName.equals(member.teamName)) {
+                        it.listOfMembers?.remove(mate)
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * Teams
+     */
+    fun addTeam(team: Team) : Boolean {
+        teamsList.forEach {
+            if(it.name.equals(team.name)) {
+                return false
+            }
+        }
+
+        teamsList.add(team)
+
+        return true
+    }
+
+    fun deleteTeam(team: Team) : Boolean {
+        if(teamsList.contains(team)) {
+            teamsList.remove(team)
+            return  true
+        }
+
+        return false
+    }
 }

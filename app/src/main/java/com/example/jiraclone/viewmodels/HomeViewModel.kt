@@ -1,6 +1,7 @@
 package com.example.jiraclone
 
-import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,7 +43,7 @@ class HomeViewModel: ViewModel() {
     }
 
     fun createTask() {
-        liveTaskEvent.value = Event(Task())
+        liveTaskEvent.value = Event(Task(taskId = Repository.getLastAvailableTaskId().toLong()))
     }
 
     fun createTeam(){
@@ -57,8 +58,18 @@ class HomeViewModel: ViewModel() {
     fun observeCurrentTeamEvent() : LiveData<Event<Team>> = liveTeamEvent
     fun observeCurrentTeamMemberEvent() : LiveData<Event<TeamMember>> = liveTeamMemberEvent
 
+    fun setItemEntry(item: Any) {
+        if(Repository.teamsList.contains(item)) {
+            liveTeamEvent.value = Event(item as Team)
+        }
+    }
+
+    fun onSelectItem(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+
+    }
+
     fun addTask(task: Task) {
-        //Repository.listOfTask.add(task)
+        Repository.addTaskToLisOfTasks(task)
         //Log.d("numbers", Repository.listOfTask.size.toString())
     }
 
