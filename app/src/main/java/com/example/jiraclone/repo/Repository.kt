@@ -9,50 +9,78 @@ object Repository {
     private var teamMemberListInDolphin : MutableList<TeamMember> = mutableListOf()
     private var teamMemberListinPeguin : MutableList<TeamMember> = mutableListOf()
     private var teamMembersInKayote : MutableList<TeamMember> = mutableListOf()
+    private var allMembers : MutableSet<TeamMember> = mutableSetOf()
+    private var allMembersName : MutableSet<String> = mutableSetOf()
     //Task(val name: String, val content: String, val assigned: Assigned, val status:Status, val team: String)
     //data class Assigned(val name: String, val contact: String, val mode: Mode)
 
+//    data class ListOfTeam(var teamList: List<Team>? = null)
+//
+//    data class Team( var logo: String? = "", var name : String? = "", var listOfMembers: MutableList<TeamMember>? = null)
+//
+//    data class TeamMember (var firstName:  String? = "",
+//                           var lastName : String? = "",
+//                           var teamName: String? ="",
+//                           var teamLead : Boolean? = false,
+//                           var listOfTask: List<Task>? = null,
+//                           var contact: String? ="",
+//                           var mode: String? = null)
+////"clovis", "1234", Mode("OffShore")
+//
+//    data class Task(var name: String="",
+//                    var content: String? ="",
+//                    var assigned: Assigned?= null,
+//                    var status:Status? = Status.NOTSTARTED,
+//                    var team: String ? = "",
+//                    var taskId:Long)
+//
+//    data class Assigned(val name: String? = "", val contact: String? ="", val mode: MODE?= MODE.WORKSITE)
+//
+//    enum class Status {NOTSTARTED, PROGRESS, DONE, CONTROL, APPROVE}
+//
+//    enum class MODE {OFFSHORE, HOME, WORKSITE}
+
     init {
-        listOfTask.add(Task("Create Login", "Login should contains two buttons",Assigned("clovis", "1234", Mode("OffShore")), Status("Not Started"), "First", 0))
-        listOfTask.add(Task("Create Work", "Work on Teams",Assigned("Milton", "1234", Mode("In Office")), Status("Started"), "First", 1))
-        listOfTask.add(Task("Visit Honolulu", "Go To honolulu",Assigned("John", "1234", Mode("Vacation")), Status("Not Started"), "second", 2))
-        listOfTask.add(Task("Fly Abroad", "Fly by plane",Assigned("Maurice", "1234", Mode("Travelling")), Status("Not Started"), "First", 3))
-        listOfTask.add(Task("Build", "Build a house",Assigned("Allen", "1234", Mode("Construction")), Status("Not Started"), "Third", 4))
-        listOfTask.add(Task("Amazon", "Do shopping",Assigned("Marie", "1234", Mode("Buying")), Status("Not Started"), "First", 5))
-        listOfTask.add(Task("Car dealers", "Get A deal on Cars",Assigned("Soso", "1234", Mode("Negotiation")), Status("Not Started"), "First", 6))
-        listOfTask.add(Task("Coach Team", "Talk to football players",Assigned("Little Lea", "1234", Mode("Meetings")), Status("Not Started"), "First", 7))
+        listOfTask.add(Task("Create Login", "Login should contains two buttons", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Create Work", "Work on Teams",Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Visit Honolulu", "Go To honolulu", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Fly Abroad", "Fly by plane", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Build", "Build a house", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Amazon", "Do shopping", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Car dealers", "Get A deal on Cars", Assigned("clovis", "1234"),  team = "First", taskId = 0))
+        listOfTask.add(Task("Coach Team", "Talk to football players", Assigned("clovis", "1234"),  team = "First", taskId = 0))
 
-
-
-//        teamsList.add(Team("3", "panda"))
-//        teamsList.add(Team("4", "panther"))
-//        teamsList.add(Team("5", "wolf"))
-//        teamsList.add(Team("6", "gazel"))
-//        teamsList.add(Team("7", "ram"))
-//        teamsList.add(Team("8", "mouse"))
-//        teamsList.add(Team("9", "fox"))
-
+        teamMemberListInDolphin.clear()
         teamMemberListInDolphin.add(TeamMember("Liam","Ethan", teamName = "Dolphin", teamLead = true, listOfTask = listOfTask))
         teamMemberListInDolphin.add(TeamMember("Soso","Milton", teamLead = false, teamName = "Dolphin", listOfTask = listOfTask))
         teamMemberListInDolphin.add(TeamMember("Clova","Inak","Dolphin", listOfTask = listOfTask))
-        teamMemberListInDolphin.add(TeamMember("Marie","Inaka","Dolphin", listOfTask = listOfTask))
+        teamMemberListInDolphin.add(TeamMember("Marie","Jour","Dolphin", listOfTask = listOfTask))
         teamMemberListInDolphin.add(TeamMember("Mira","Abonge","Dolphin"))
         teamMemberListInDolphin.add(TeamMember("Milton","Ak","Dolphin"))
 
+        teamMembersInKayote.clear()
         teamMembersInKayote.add(TeamMember("Liam","Ethan", teamName = "kayote", teamLead = true))
-        teamMembersInKayote.add(TeamMember("Mol","Milton", teamName = "kayote"))
+        teamMembersInKayote.add(TeamMember("SosoDrrtt","Milton", teamName = "kayote"))
         teamMembersInKayote.add(TeamMember("Clovadrg","Inak","kayote", listOfTask = listOfTask))
         teamMembersInKayote.add(TeamMember("MarieTou","Inaka","kayote", listOfTask = listOfTask))
-        teamMembersInKayote.add(TeamMember("Miranak","Abonge","kayote", listOfTask = listOfTask))
+        teamMembersInKayote.add(TeamMember("Miranak","Eliel","kayote", listOfTask = listOfTask))
         teamMembersInKayote.add(TeamMember("Miltondfj","Ak","kayote"))
 
+
+        teamMemberListinPeguin.clear()
         teamMemberListinPeguin.add(TeamMember("LiamJolei","Ethan", teamName = "penguin", teamLead = true, listOfTask = listOfTask))
-        teamMemberListinPeguin.add(TeamMember("SosoDrrtt","Milton", teamLead = false, teamName = "penguin"))
+        teamMemberListinPeguin.add(TeamMember("SosoDrrtt","norbert", teamLead = false, teamName = "penguin"))
         teamMemberListinPeguin.add(TeamMember("Clovaiiiii","Inak","penguin", listOfTask = listOfTask))
         teamMemberListinPeguin.add(TeamMember("Mariejjjjj","Inaka","penguin",false, listOfTask = listOfTask))
-        teamMemberListinPeguin.add(TeamMember("Mirajjjjj","Abonge","penguin",false))
+        teamMemberListinPeguin.add(TeamMember("Mirajjjjj","Cold","penguin",false))
         teamMemberListinPeguin.add(TeamMember("Miltonjjjj","Ak","penguin",false))
 
+        allMembers.clear()
+        allMembers.addAll(teamMemberListInDolphin)
+        allMembers.addAll(teamMembersInKayote)
+        allMembers.addAll(teamMemberListinPeguin)
+
+        teamsList.clear()
         teamsList.add(Team("0", "Dolphin",  teamMemberListInDolphin))
         teamsList.add(Team("1", "kayote", teamMembersInKayote))
         teamsList.add(Team("2", "penguin", teamMemberListinPeguin))
@@ -88,6 +116,8 @@ object Repository {
     fun deleteTask(task: Task) {
         listOfTask.remove(task)
     }
+
+    fun getListOfTask() = listOfTask
 
     fun getLastAvailableTaskId() : Int {
         return listOfTask.size
@@ -137,6 +167,27 @@ object Repository {
     /**
      * Teams
      */
+    fun getTeams() : Set<Team> {
+        val  singleEntryList : MutableSet<Team> = mutableSetOf()
+        val  resultEntryList : MutableSet<String> = mutableSetOf()
+
+        for (team in teamsList) {
+            val  name = team.name + team.logo
+            resultEntryList.add(name)
+        }
+
+        resultEntryList.forEach {names ->
+            teamsList.filter { it.name?.let { it1 -> names.contains(it1) }== true
+                    && it.logo?.let { it1 -> names.contains(it1) }== true}.also {
+                if(!singleEntryList.contains(it[0])) {
+                    singleEntryList.add(it[0])
+                }
+            }
+        }
+
+        return  singleEntryList
+    }
+
     fun addTeam(team: Team) : Boolean {
         teamsList.forEach {
             if(it.name.equals(team.name)) {
@@ -156,5 +207,33 @@ object Repository {
         }
 
         return false
+    }
+
+    /**
+     * All members
+     */
+    fun getAllMembers() : Set<TeamMember> {
+        val  singleEntryList : MutableSet<TeamMember> = mutableSetOf()
+        val  resultEntryList : MutableSet<String> = mutableSetOf()
+
+        for (allMember in allMembers) {
+            val  name = allMember.firstName + allMember.lastName
+            resultEntryList.add(name)
+        }
+
+        resultEntryList.forEach {names ->
+            allMembers.filter { it.firstName?.let { it1 -> names.contains(it1) }== true
+                    && it.lastName?.let { it1 -> names.contains(it1) }== true }.also {
+                if(!singleEntryList.contains(it[0])) {
+                    singleEntryList.add(it[0])
+                }
+            }
+        }
+
+        return  singleEntryList
+    }
+
+    fun getAllMembersWithTeam(teamName: String) : Set<TeamMember> {
+        return getAllMembers().filter { it.teamName.equals(teamName) }.toSet()
     }
 }

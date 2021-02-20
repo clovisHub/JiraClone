@@ -33,8 +33,10 @@ class TeamMembersFragment: BaseFragment(), TeamMembersAdapter.TeamMemberListener
         setCloseClick()
         teamMembersBinding.recyclerTeamMembersListId.layoutManager = LinearLayoutManager(context)
         teamMembersBinding.recyclerTeamMembersListId.adapter = TeamMembersAdapter(this).apply {
-            viewModel?.getTeamMemberList()?.observe(this@TeamMembersFragment, Observer { list ->
-                this.setTeamMemberList(list)
+            viewModel?.getTeamMemberList()?.observe(viewLifecycleOwner, { event ->
+                    event.getContentIfNotHandled<List<TeamMember>>().let { list ->
+                        list?.let {  this.setTeamMemberList(list) }
+                    }
             })
         }
         teamMembersBinding.addDevId.setOnClickListener {

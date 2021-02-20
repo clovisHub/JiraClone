@@ -55,9 +55,9 @@ class ListOfTeamsFragment: BaseFragment(), TeamListAdapter.TeamsListListener {
         fun newInstance() = ListOfTeamsFragment()
     }
 
-    override fun onClick(teams: Team) {
+    override fun onClick(team: Team) {
         //clicked or selected team from the list of Teams
-        viewModel?.setCurrenntTeam(teams)
+        viewModel?.setCurrentTeam(team)
         Thread.sleep(100L)
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.frameId, TeamMembersFragment.newInstance())
