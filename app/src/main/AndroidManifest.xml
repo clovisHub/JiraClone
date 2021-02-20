@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".HomeActivity"
             android:noHistory="true"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -35,7 +35,7 @@ class TaskDetailsFragment: BaseFragment() {
                      taskDetailsBinding.taskDetailsTitleId.text = task.name
                      taskDetailsBinding.taskDetailsAssignedId.text = task.assigned?.name?: ""
                      taskDetailsBinding.taskDetailsDescriptionId.text = task.content
-                     taskDetailsBinding.taskDetailsStatusId.text = task.status?.state ?: ""
+                     taskDetailsBinding.taskDetailsStatusId.text = task.status?.name ?: ""
                  }
             }
         })
