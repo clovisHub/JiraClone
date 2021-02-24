@@ -1,12 +1,20 @@
 package com.example.jiraclone.ui.tasks
 
+import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.databinding.TaskItemBinding
 import com.example.jiraclone.models.Task
+import com.example.jiraclone.repo.Repository
+import com.example.jiraclone.ui.views.Trashable
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class TaskListAdapter (private val listener: TaskListListener): RecyclerView.Adapter<TaskListAdapter.TaskHolder>() {
+class TaskListAdapter (private val listener: TaskListListener,
+                       private var viewModel: HomeViewModel? = null):
+    RecyclerView.Adapter<TaskListAdapter.TaskHolder>() , Trashable{
 
     private var taskList: MutableList<Task> = mutableListOf()
 
@@ -24,16 +32,19 @@ class TaskListAdapter (private val listener: TaskListListener): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(taskHolder: TaskHolder, position: Int) {
-           taskHolder.view.task = taskList[position]
-           taskHolder.view.root.setOnClickListener {
-               listener.onClick(taskList[position])
-           }
+        taskHolder.view.apply {
+            task = taskList[position]
+            visibleCan = true
+            trashable = this@TaskListAdapter
+            root.setOnClickListener {
+                listener.onClick(taskList[position])
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return taskList.size
     }
-
 
     class TaskHolder(val view: TaskItemBinding) : RecyclerView.ViewHolder(view.root)
 
@@ -41,4 +52,10 @@ class TaskListAdapter (private val listener: TaskListListener): RecyclerView.Ada
         fun  onClick(task: Task)
     }
 
+    override fun onTrashClick(task: Task) {
+        Log.d("Regard", " You made it possible")
+        Repository.deleteTask(task)
+        viewModel?.refreshListOfTask()
+        notifyDataSetChanged()
+    }
 }

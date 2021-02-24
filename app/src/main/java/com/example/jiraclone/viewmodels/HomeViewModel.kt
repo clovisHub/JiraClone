@@ -24,7 +24,7 @@ class HomeViewModel: ViewModel() {
 
     //Tasks
     private val liveTaskList: MutableLiveData<List<Task>> = MutableLiveData()
-    private val liveTaskEvent : MutableLiveData<Event<Task>> = MutableLiveData()
+    private val liveTaskEvent : MutableLiveData<Event<Task?>> = MutableLiveData()
     private val liveUpdateTaskEvent : MutableLiveData<Event<Task>> = MutableLiveData()
 
     private val liveDataState : MutableLiveData<Int> = MutableLiveData()
@@ -38,6 +38,10 @@ class HomeViewModel: ViewModel() {
     }
 
     fun getListOfTask() : LiveData<List<Task>> = liveTaskList
+
+    fun refreshListOfTask() {
+        liveTaskList.value = Repository.getListOfTask()
+    }
 
     fun getTeamsList() : LiveData<List<Team>> = liveTeamsList
 
@@ -92,7 +96,7 @@ class HomeViewModel: ViewModel() {
         liveTeamMemberEvent.value = Event(TeamMember("", ""))
     }
 
-    fun observeCurrentTaskEvent() : LiveData<Event<Task>> = liveTaskEvent
+    fun observeCurrentTaskEvent() : LiveData<Event<Task?>> = liveTaskEvent
 
     fun observeCurrentUpdateTaskEvent() : LiveData<Event<Task>> = liveUpdateTaskEvent
 
@@ -120,11 +124,11 @@ class HomeViewModel: ViewModel() {
         liveDataState.value = state
     }
 
-    fun setCurrentTask(task: Task) {
-        liveTaskEvent.value = Event(task)
+    fun setCurrentTask(task: Task?) {
+        liveTaskEvent.value = if(task?.taskId != null) Event(task) else Event(Task( ))
     }
 
-    fun getCurrentTaskId(): LiveData<Event<Task>> = liveTaskEvent
+    fun getCurrentTaskId(): LiveData<Event<Task?>> = liveTaskEvent
 
     //All Members
     fun getAllMemberList() : LiveData<Set<TeamMember>> = liveAllMember

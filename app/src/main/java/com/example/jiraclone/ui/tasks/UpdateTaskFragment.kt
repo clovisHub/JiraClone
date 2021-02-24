@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import com.example.jiraclone.HomeActivity
 import com.example.jiraclone.HomeViewModel
 import com.example.jiraclone.R
 import com.example.jiraclone.databinding.FragmentTaskCreateBinding
 import com.example.jiraclone.models.Assigned
-import com.example.jiraclone.models.Status
 import com.example.jiraclone.models.Task
 import com.example.jiraclone.models.TeamMember
 import com.example.jiraclone.ui.BaseFragment
@@ -23,14 +21,18 @@ class UpdateTaskFragment: BaseFragment() {
     private var viewModel: HomeViewModel? = null
     private var currentTaskId : Long = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
         activity?.let {
             viewModel = if(it is HomeActivity) it.activityViewModel else null
         }
 
         val createTaskBinding = DataBindingUtil
-            .inflate<FragmentTaskCreateBinding>(inflater, R.layout.fragment_task_create, container, false)
+            .inflate<FragmentTaskCreateBinding>(inflater,
+                R.layout.fragment_task_create, container,
+                false)
         createTaskBinding.taskCreatePageId.text = getString(R.string.update)
         createTaskBinding.taskCreateButtonId.apply {
             text = getString(R.string.update)
@@ -125,8 +127,8 @@ class UpdateTaskFragment: BaseFragment() {
                 val task = event.getContent()
                 task?.status
                 task?.assigned
-                createTaskBinding?.taskCreateTitleNameId?.setText(task.name ?: "")
-                createTaskBinding?.taskCreateDescriptionId?.setText(task.content?: "")
+                createTaskBinding?.taskCreateTitleNameId?.setText(task?.name ?: "")
+                createTaskBinding?.taskCreateDescriptionId?.setText(task?.content?: "")
 
 //                task?.assigned = Assigned(name = viewModel?.getCurrentTeamMemberName())
 //                task?.team = viewModel?.getCurrentTeamName()?:""
@@ -140,19 +142,25 @@ class UpdateTaskFragment: BaseFragment() {
 
         viewModel?.observeCurrentUpdateTaskEvent()?.observe(viewLifecycleOwner, {
             it?.let {event ->
-                viewModel?.getCurrentTaskId()?.value?.getContentIfNotHandled<Task>()?.let {
-                    val task = it
-                    task.assigned = Assigned(name = viewModel?.getCurrentTeamMemberName())
-                    task.team = viewModel?.getCurrentTeamName()?:""
-                    task.name = createTaskBinding?.taskCreateTitleNameId?.text.toString()
-                    task.content = createTaskBinding?.taskCreateDescriptionId?.text.toString()
+                event.getContentIfNotHandled<Task>().let { tasks ->
+                    tasks?.let {
+                        viewModel?.getCurrentTaskId()?.value?.getContentIfNotHandled<Task>()?.let {
+                            val task = it
+                            task.assigned = Assigned(name = viewModel?.getCurrentTeamMemberName())
+                            task.team = viewModel?.getCurrentTeamName()?:""
+                            task.name = createTaskBinding?.taskCreateTitleNameId?.text.toString()
+                            task.content = createTaskBinding
+                                ?.taskCreateDescriptionId?.text.toString()
 
-                    task.let { viewModel?.addTask(task) }
-                    Thread.sleep(100L)
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.frameId, TaskListFragment.newInstance())
-                        ?.addToBackStack(null)
-                        ?.commit()
+                            task.let { viewModel?.addTask(task) }
+                            viewModel?.setCurrentTask(Task())
+                            Thread.sleep(100L)
+                            activity?.supportFragmentManager?.beginTransaction()
+                                ?.replace(R.id.frameId, TaskListFragment.newInstance())
+                                ?.addToBackStack(null)
+                                ?.commit()
+                        }
+                    }
                 }
             }
         })

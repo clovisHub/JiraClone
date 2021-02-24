@@ -5,6 +5,8 @@
 
     <data>
         <variable name="task" type="com.example.jiraclone.models.Task" />
+        <variable name="visibleCan" type="Boolean" />
+        <variable name="trashable" type="com.example.jiraclone.ui.views.Trashable" />
     </data>
 
     <com.example.jiraclone.ui.views.CustomCardView
@@ -21,5 +23,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:trash="@{visibleCan}"
+        app:task="@{task}"
+        app:item="@{trashable}"
         app:textInput="@{task.component1()}"/>
 </layout>

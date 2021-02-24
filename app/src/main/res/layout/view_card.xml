@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/card_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
-            android:src="@android:drawable/btn_plus"
+            android:layout_marginStart="24dp"
             android:contentDescription="Image"
-            tools:visibility="visible"
+            android:src="@android:drawable/btn_plus"
             android:visibility="gone"
-            />
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/card_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/caption_text_size"
-            tools:text="Teams"
-            tools:visibility="visible"
-            android:visibility="gone"
-            android:textColor="@color/black_text"
+            android:layout_marginStart="20dp"
             android:gravity="center"
-            />
-    </LinearLayout>
+            android:textColor="@color/black_text"
+            android:textSize="@dimen/caption_text_size"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/trash_delete"
+            app:layout_constraintHorizontal_bias="0.365"
+            app:layout_constraintStart_toEndOf="@+id/card_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Teams"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/trash_delete"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
